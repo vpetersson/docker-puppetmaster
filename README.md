@@ -58,7 +58,7 @@ Here's an example of how the run could look like.
 
 It is also important to note that if this is the first run, an SSL certificate for the hostname will be generated.
 
-    docker run \
+    docker run -d \
       --name puppetmaster \
       --restart always \
       -h puppet.local \
