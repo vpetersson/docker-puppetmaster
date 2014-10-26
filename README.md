@@ -1,6 +1,6 @@
 # Dockerzied Puppet master
 
-This is a fully working Dockerized Puppet master running on Ubuntu 14.04 with Apache and Passanger using the [official](https://docs.puppetlabs.com/guides/install_puppet/install_debian_ubuntu.html) instructions.
+This is a fully working Dockerized Puppet master running on Ubuntu 14.04 with Apache and Passenger using the [official](https://docs.puppetlabs.com/guides/install_puppet/install_debian_ubuntu.html) instructions.
 
 Given that Puppet runs within a Docker container, we cannot use the CLI for managing nodes. Instead, the container is configured to use the built-in API for these tasks. As an added benefit, we can then easily automate these tasks with scripts and other integrations. Some common examples have been provided below.
 
@@ -12,7 +12,7 @@ Before you start the container, it is important to understand how this container
 
 **tl;dr:** This must match the hostname your clients connect to.
 
-It is important that you pass on the `-h puppet.local` where 'puppet.local' is the desired hostname of your puppet server. This variable will be used for the Puppet Master. If this hostname doesn't match the hostname your clients are connecting to, the puppet run will fail.
+It is important that you pass on the `-h puppet.local`, where 'puppet.local' is the desired hostname of your Puppet server. This variable will be used for the Puppet master. If this hostname doesn't match the hostname your clients are connecting to, the Puppet run will fail.
 
 
 ## Port
@@ -39,9 +39,9 @@ More information about this can be found [here](https://docs.puppetlabs.com/guid
 
 ## Volumes
 
-**tl;dr:** This is where you store your permanant data outside of the container.
+**tl;dr:** This is where you store your permanent data outside of the container.
 
-Since Docker containers are ephimeral by nature, we need to store all sensitive data outside of the container using volumes.
+Since Docker containers are ephemeral by nature, we need to store all sensitive data outside of the container using volumes.
 
 There are three different volumes that we will be using:
 
@@ -67,13 +67,13 @@ It is also important to note that if this is the first run, an SSL certificate f
       -v /path/to/datastore:/var/lib/puppet \
       -v /path/to/modules:/etc/puppet/modules \
       -v /path/to/manifests:/etc/puppet/manifests \
-      -i -t vpetersson/puppetmaster
+      -t vpetersson/puppetmaster
 
 # Interaction
 
 This container is designed to use the Puppet API for management. The full documentation is available [here](https://docs.puppetlabs.com/guides/rest_api.html).
 
-Here are som common operations that you may want to use.
+Here are some common operations that you may want to use.
 
 ## Get status of nodes
 
