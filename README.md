@@ -67,7 +67,7 @@ It is also important to note that if this is the first run, an SSL certificate f
       -v /path/to/datastore:/var/lib/puppet \
       -v /path/to/modules:/etc/puppet/modules \
       -v /path/to/manifests:/etc/puppet/manifests \
-      -i -t wireload/puppetmaster
+      -i -t vpetersson/puppetmaster
 
 # Interaction
 
