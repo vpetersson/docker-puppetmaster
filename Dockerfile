@@ -21,7 +21,10 @@ RUN rm /tmp/puppet-repo.deb
 RUN apt-get update
 RUN apt-get install -y puppetmaster-passenger
 
-VOLUME [/var/lib/puppet,/etc/puppet/modules,/etc/puppet/manifests]
+# Clean up certificates
+RUN rm -rf /var/lib/puppet
+
+VOLUME /var/lib/puppet /etc/puppet/modules /etc/puppet/manifests
 
 EXPOSE 8140
 
