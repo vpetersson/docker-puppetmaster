@@ -3,10 +3,6 @@
 function initiate_instance {
   echo "Starting node initiation..."
 
-  # Make Apache config hostname dynamic
-  sed -i -e 's/SSLCertificateFile.*$/SSLCertificateFile      \/var\/lib\/puppet\/ssl\/certs\/${HOSTNAME}.pem/g' /etc/apache2/sites-enabled/puppetmaster.conf
-  sed -i -e 's/SSLCertificateKeyFile.*$/SSLCertificateKeyFile   \/var\/lib\/puppet\/ssl\/private_keys\/${HOSTNAME}.pem/g' /etc/apache2/sites-enabled/puppetmaster.conf
-
   # Fire up regular Puppet master to generate
   # certificates and folder structure.
   # This shouldn't take more than five seconds.
@@ -36,6 +32,10 @@ if [ -n "$ACLGRANT" ]; then
   echo "Adding ACL stanza..."
   grant_acl_permission
 fi
+
+# Make Apache config hostname dynamic
+sed -i -e 's/SSLCertificateFile.*$/SSLCertificateFile      \/var\/lib\/puppet\/ssl\/certs\/${HOSTNAME}.pem/g' /etc/apache2/sites-enabled/puppetmaster.conf
+sed -i -e 's/SSLCertificateKeyFile.*$/SSLCertificateKeyFile   \/var\/lib\/puppet\/ssl\/private_keys\/${HOSTNAME}.pem/g' /etc/apache2/sites-enabled/puppetmaster.conf
 
 # Start Apache
 echo "Starting Apache..."
